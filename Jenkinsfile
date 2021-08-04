@@ -47,8 +47,7 @@ pipeline {
     
     stage('Publish App Image'){
       when { 
-        tag pattern: tag_regex, comparator: "REGEXP" 
-        anyOf { branch 'main'; branch 'dev' } 
+        anyOf { branch 'main'; branch 'dev'; tag pattern: tag_regex, comparator: "REGEXP"  } 
         }
       steps {
         sh 'echo "publishing..."'
