@@ -5,7 +5,7 @@ pipeline {
     registryCredential = 'docker'
     appTest = ''
     app = '' 
-    tag_regex = '^v([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9]+(?:\.[0-9-]+)*))?(?:\+[0-9]+)?$'
+    // tag_regex = "^v([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9]+(?:\.[0-9-]+)*))?(?:\+[0-9]+)?$"
   }
 
   agent any
@@ -35,7 +35,7 @@ pipeline {
     
     stage('Build App Image') {
       when { 
-        tag pattern: tag_regex, comparator: "REGEXP" 
+        tag pattern: "^v([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9]+(?:\.[0-9-]+)*))?(?:\+[0-9]+)?$", comparator: "REGEXP" 
         anyOf { branch 'main'; branch 'dev' } 
         }
       steps {
@@ -48,7 +48,7 @@ pipeline {
     
     stage('Publish App Image'){
       when { 
-        tag pattern: tag_regex, comparator: "REGEXP" 
+        tag pattern: "^v([0-9]+)\.([0-9]+)\.([0-9]+)(?:-([0-9]+(?:\.[0-9-]+)*))?(?:\+[0-9]+)?$", comparator: "REGEXP" 
         anyOf { branch 'main'; branch 'dev' } 
         }
       steps {
