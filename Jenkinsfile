@@ -38,7 +38,7 @@ pipeline {
         anyOf { branch 'main'; branch 'dev'; tag pattern: tag_regex, comparator: "REGEXP"  } 
         }
       steps {
-        sh 'echo "build app image..."'
+        sh 'echo "build app image this will happen because of new release tag..."'
         // script {
         //   app = docker.build(imagename)
         // }       
