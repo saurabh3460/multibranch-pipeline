@@ -14,7 +14,7 @@ pipeline {
  
     stage('Build Test Image') {
       steps {
-        sh 'echo "Build test image"'
+        sh 'echo "Build test dev image"'
         // script {
         //   appTest = docker.build('iam-server-test', '-f ${WORKSPACE}/Dockerfile.dev ${WORKSPACE}')
         // }       
